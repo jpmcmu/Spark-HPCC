@@ -17,17 +17,21 @@ jobs:
     strategy:
       matrix:
         versions:
-          - spark: 3.2.1
-            # spark-url: https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
-            hadoop: 3.2
-            scala: 2.13
+          - spark: 2.4.6
+            spark-url: https://archive.apache.org/dist/spark/spark-2.4.6/spark-2.4.6-bin-hadoop2.6.tgz
+            hadoop: 2.6
+            scala: 2.11
+          # - spark: 3.2.1
+          #   # spark-url: https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+          #   hadoop: 3.2
+          #   scala: 2.13
 
     steps:
 
     - name: Setup JDK 1.8
       uses: actions/setup-java@v1
       with:
-        java-version: '11'
+        java-version: 1.8
 
     - name: Install K8s
       uses: balchua/microk8s-actions@v0.3.2
@@ -109,9 +113,9 @@ jobs:
     - name: Trust Certs
       run: |
         openssl s_client -showcerts -connect eclwatch.default:8010 < /dev/null | openssl x509 -outform DER > cert.der
-        sudo keytool -import -cacerts -storepass changeit -noprompt -alias eclwatch-tls -file cert.der
+        sudo keytool -import -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -noprompt -alias eclwatch-tls -file cert.der
         openssl s_client -showcerts -connect rowservice.default:7600 < /dev/null | openssl x509 -outform DER > cert.der
-        sudo keytool -import -cacerts -storepass changeit -noprompt -alias dafilesrv-tls -file cert.der
+        sudo keytool -import -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -noprompt -alias dafilesrv-tls -file cert.der
 
     - name: Run setup-spark ${{ matrix.versions.spark }}
       uses: vemonet/setup-spark@v1
@@ -119,7 +123,7 @@ jobs:
         spark-version: ${{ matrix.versions.spark }}
         hadoop-version: ${{ matrix.versions.hadoop }}
         scala-version: ${{ matrix.versions.scala }}
-        # spark-url: ${{ matrix.versions.spark-url }}
+        spark-url: ${{ matrix.versions.spark-url }}
 
     - name: Check Spark
       run: spark-submit --version
