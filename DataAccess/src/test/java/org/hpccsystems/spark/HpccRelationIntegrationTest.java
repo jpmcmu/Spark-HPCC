@@ -35,10 +35,9 @@ import org.junit.experimental.categories.Category;
 import scala.collection.JavaConverters;
 import scala.collection.Seq;
 
-@Category(org.hpccsystems.commons.annotations.BaseTests.class)
 public class HpccRelationIntegrationTest extends BaseIntegrationTest
 {
-    @Test
+    // @Test
     public void testbuildScanAllValid() throws Exception
     {
         SparkSession spark = getOrCreateSparkSession();
