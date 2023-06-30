@@ -33,11 +33,11 @@ jobs:
       with:
         java-version: 1.8
 
-    - name: Run setup-spark ${{ matrix.versions.spark }}
-      uses: vemonet/setup-spark@v1
-      with:
-        spark-version: ${{ matrix.versions.spark }}
-        hadoop-version: ${{ matrix.versions.hadoop }}
+    # - name: Run setup-spark ${{ matrix.versions.spark }}
+    #   uses: vemonet/setup-spark@v1
+    #   with:
+    #     spark-version: ${{ matrix.versions.spark }}
+    #     hadoop-version: ${{ matrix.versions.hadoop }}
         # scala-version: ${{ matrix.versions.scala }}
         # spark-url: ${{ matrix.versions.spark-url }}
 
