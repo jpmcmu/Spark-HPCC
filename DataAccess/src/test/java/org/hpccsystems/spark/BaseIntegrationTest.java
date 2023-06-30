@@ -92,8 +92,10 @@ class BaseIntegrationTest
             sparkJarPath
         };
 
+        String sparkMaster = System.getProperty("sparkmaster", "local");
+
         return new SparkConf()
-            .setMaster("local")
+            .setMaster(sparkMaster)
             .setAppName("Spark-HPCC-Connector-Test")
             .set("spark.driver.allowMultipleContexts", "false")
             .set("spark.sql.allowMultipleContexts", "false")

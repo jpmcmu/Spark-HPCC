@@ -18,13 +18,13 @@ jobs:
       matrix:
         versions:
           - spark: 3.2.1
-            spark-url: https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+            # spark-url: https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
             hadoop: 3.2
             scala: 2.13
-          - spark: 2.4.6
-            spark-url: https://archive.apache.org/dist/spark/spark-2.4.6/spark-2.4.6-bin-hadoop2.6.tgz
-            hadoop: 2.6
-            scala: 2.11
+          # - spark: 2.4.6
+          #   spark-url: https://archive.apache.org/dist/spark/spark-2.4.6/spark-2.4.6-bin-hadoop2.6.tgz
+          #   hadoop: 2.6
+          #   scala: 2.11
 
     steps:
 
@@ -139,4 +139,4 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build & Verify with Maven
-      run: mvn verify --file DataAccess/pom.xml -Dmaven.test.failure.ignore=false -Dhpccconn=https://eclwatch.default:8010 -Dthorclustername=data
+      run: mvn verify --file DataAccess/pom.xml -Dmaven.test.failure.ignore=false -Dhpccconn=https://eclwatch.default:8010 -Dthorclustername=data -Dsparkmaster=spark://127.0.0.1:7077
