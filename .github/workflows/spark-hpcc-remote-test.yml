@@ -18,10 +18,12 @@ jobs:
       matrix:
         versions:
           - spark: 3.2.1
-            hadoop: hadoop3.2
+            spark-url: https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+            hadoop: 3.2
             scala: 2.13
           - spark: 2.4.6
-            hadoop: hadoop2.6
+            spark-url: https://archive.apache.org/dist/spark/spark-2.4.6/spark-2.4.6-bin-hadoop2.6.tgz
+            hadoop: 2.6
             scala: 2.11
 
     steps:
@@ -120,7 +122,10 @@ jobs:
     - name: Run setup-spark ${{ matrix.versions.spark }}
       uses: vemonet/setup-spark@v1
       with:
-        spark-url: 'https://archive.apache.org/dist/spark/spark-${{ matrix.versions.spark }}/spark-${{ matrix.versions.spark }}-bin-${{ matrix.versions.hadoop }}.tgz'
+        spark-version: ${{ matrix.versions.spark }}
+        hadoop-version: ${{ matrix.versions.hadoop }}
+        scala-version: ${{ matrix.versions.scala }}
+        spark-url: ${{ matrix.versions.spark-url }}
 
     - name: Check Spark
       run: spark-submit --version
