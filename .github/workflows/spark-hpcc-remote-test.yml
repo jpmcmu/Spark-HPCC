@@ -125,8 +125,8 @@ jobs:
         openssl s_client -showcerts -connect rowservice.default:7600 < /dev/null | openssl x509 -outform DER > cert.der
         sudo keytool -import -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -noprompt -alias dafilesrv-tls -file cert.der
 
-    - name: Check Spark
-      run: spark-submit --version
+    # - name: Check Spark
+    #   run: spark-submit --version
 
     # speed things up with caching from https://docs.github.com/en/actions/guides/building-and-testing-java-with-maven
     - name: Cache Maven packages
