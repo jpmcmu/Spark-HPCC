@@ -17,14 +17,14 @@ jobs:
     strategy:
       matrix:
         versions:
-          - spark: 2.4.8
-            spark-url: https://archive.apache.org/dist/spark/spark-2.4.6/spark-2.4.6-bin-hadoop2.6.tgz
-            hadoop: 2.6
-            scala: 2.11
-          # - spark: 3.2.1
-          #   # spark-url: https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
-          #   hadoop: 3.2
-          #   scala: 2.13
+          # - spark: 2.4.8
+          #   spark-url: https://archive.apache.org/dist/spark/spark-2.4.6/spark-2.4.6-bin-hadoop2.6.tgz
+          #   hadoop: 2.6
+          #   scala: 2.11
+          - spark: 3.2.1
+            # spark-url: https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+            hadoop: 3.2
+            scala: 2.13
 
     steps:
 
@@ -39,7 +39,7 @@ jobs:
         spark-version: ${{ matrix.versions.spark }}
         hadoop-version: ${{ matrix.versions.hadoop }}
         scala-version: ${{ matrix.versions.scala }}
-        spark-url: ${{ matrix.versions.spark-url }}
+        # spark-url: ${{ matrix.versions.spark-url }}
 
     - name: Install K8s
       uses: balchua/microk8s-actions@v0.3.2
