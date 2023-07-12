@@ -87,7 +87,7 @@
     <dependency>
       <groupId>org.hpccsystems</groupId>
       <artifactId>commons-hpcc</artifactId>
-      <version>${project.version}</version>
+      <version>9.2.0-1</version>
       <exclusions>
         <exclusion>
           <groupId>org.antlr</groupId>
@@ -102,7 +102,7 @@
     <dependency>
       <groupId>org.hpccsystems</groupId>
       <artifactId>wsclient</artifactId>
-      <version>${project.version}</version>
+      <version>9.2.0-1</version>
       <exclusions>
         <exclusion>
           <groupId>org.antlr</groupId>
@@ -117,7 +117,7 @@
     <dependency>
       <groupId>org.hpccsystems</groupId>
       <artifactId>dfsclient</artifactId>
-      <version>${project.version}</version>
+      <version>9.2.0-1</version>
       <exclusions>
         <exclusion>
           <groupId>org.antlr</groupId>
