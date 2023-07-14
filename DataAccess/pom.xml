@@ -22,8 +22,8 @@
     <maven.gpg.skip>true</maven.gpg.skip>
     <maven.source.version>2.2.1</maven.source.version>
     <maven.javadoc.version>3.1.0</maven.javadoc.version>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.version>3.8.0</maven.compiler.version>
+    <maven.compiler.release>8</maven.compiler.release>
     <spark.runtime.version>2.4.6</spark.runtime.version>
     <scala.binary.version>2.11</scala.binary.version>
     <scala.version>2.11</scala.version>
@@ -153,6 +153,13 @@
             </execution>
           </executions>
         </plugin>
+        <plugin>
+         <artifactId>maven-compiler-plugin</artifactId>
+         <version>${maven.compiler.version}</version>
+         <configuration>
+           <release>${maven.compiler.release}</release>
+         </configuration>
+       </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
