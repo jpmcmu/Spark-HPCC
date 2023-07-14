@@ -20,11 +20,6 @@ jobs:
           - spark: 3.2.1
 
     services:
-      hpccsystems-platform:
-        image: hpccsystemslegacy/platform
-        ports:
-          - 8510:8510
-          - 8010:8010
       sparkmaster:
         image: bitnami/spark:${{ matrix.versions.spark }}
         ports:
@@ -32,6 +27,10 @@ jobs:
           - 8080:8080
 
     steps:
+
+    - name: Test Spark
+      run: |
+        telnet sparkmaster 7077
 
     - name: Setup JDK 11
       uses: actions/setup-java@v1
