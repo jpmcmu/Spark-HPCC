@@ -16,21 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        versions:
-          - spark: 3.2.1
-
-    services:
-      sparkmaster:
-        image: bitnami/spark:${{ matrix.versions.spark }}
-        ports:
-          - 7077:7077
-          - 8080:8080
+          profile: ['test-spark33']
 
     steps:
-
-    - name: Test Spark
-      run: |
-        telnet sparkmaster 7077
 
     - name: Setup JDK 11
       uses: actions/setup-java@v1
@@ -130,4 +118,4 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build & Verify with Maven
-      run: mvn verify --file DataAccess/pom.xml -Dmaven.test.failure.ignore=false -Dhpccconn=https://eclwatch.default:8010 -Dthorclustername=data -Dsparkmaster=spark://sparkmaster:7077
+      run: mvn verify --file DataAccess/pom.xml -P ${{ matrix.profile }} -Dmaven.test.failure.ignore=false -Dhpccconn=https://eclwatch.default:8010 -Dthorclustername=data -Dsparkmaster=spark://sparkmaster:7077

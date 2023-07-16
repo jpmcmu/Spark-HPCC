@@ -93,7 +93,6 @@ class BaseIntegrationTest
         };
 
         String sparkMaster = System.getProperty("sparkmaster", "local");
-
         return new SparkConf()
             .setMaster(sparkMaster)
             .setAppName("Spark-HPCC-Connector-Test")

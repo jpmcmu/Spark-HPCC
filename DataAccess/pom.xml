@@ -27,9 +27,6 @@
     <spark.runtime.version>2.4.6</spark.runtime.version>
     <scala.binary.version>2.11</scala.binary.version>
     <scala.version>2.11</scala.version>
-    <!-- <spark.runtime.version>3.3.0</spark.runtime.version>
-    <scala.binary.version>2.12</scala.binary.version>
-    <scala.version>2.12.11</scala.version> -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <javadoc.excludePackageNames>net.razorvine.*:org.apache.*:org.hpccsystems.commons.*:org.hpccsystems.generated.*:org.hpccsystems.dfs.*:org.hpccsystems.ws.*:org.hpccsystems.ws.client.antlr.*</javadoc.excludePackageNames>
   </properties>
@@ -198,6 +195,13 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.version}</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven.surefire.version}</version>
         <configuration>
@@ -271,6 +275,14 @@
     </plugins>
   </build>
   <profiles>
+    <profile>
+        <id>test-spark33</id>
+        <properties>
+            <scala.binary.version>2.12</scala.binary.version>
+            <scala.version>2.12.11</scala.version>
+            <spark.version>3.3.0</spark.version>
+        </properties>
+    </profile>
     <profile>
       <id>allow-snapshots</id>
       <activation>
@@ -377,6 +389,13 @@
             </configuration>
           </plugin>
           <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.version}</version>
+            <configuration>
+              <release>${maven.compiler.release}</release>
+            </configuration>
+          </plugin>
+          <plugin>
             <artifactId>maven-surefire-plugin</artifactId>
             <version>${maven.surefire.version}</version>
             <configuration>
@@ -384,7 +403,6 @@
               <groups>${groups}</groups>
             </configuration>
           </plugin>
-
         </plugins>
       </build>
     </profile>
