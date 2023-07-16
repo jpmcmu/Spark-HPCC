@@ -104,7 +104,7 @@ public class GenericRowRecordAccessor implements IRecordAccessor
             }
             else if (val instanceof scala.collection.Seq)
             {
-                return scala.collection.JavaConverters.seqAsJavaListConverter((scala.collection.Seq<Object>)val);
+                scala.collection.JavaConversions.seqAsJavaList((scala.collection.Seq<Object>)val);
             }
 
             return new ArrayList<Object>();

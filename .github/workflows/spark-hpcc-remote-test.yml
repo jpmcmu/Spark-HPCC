@@ -118,4 +118,4 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build & Verify with Maven
-      run: mvn verify --file DataAccess/pom.xml -P ${{ matrix.profile }} -Dmaven.test.failure.ignore=false -Dhpccconn=https://eclwatch.default:8010 -Dthorclustername=data -Dsparkmaster=spark://sparkmaster:7077
+      run: mvn verify --file DataAccess/pom.xml -P ${{ matrix.profile }} -Dmaven.test.failure.ignore=false -Dhpccconn=https://eclwatch.default:8010 -Dthorclustername=data
