@@ -25,7 +25,7 @@ jobs:
       with:
         java-version: 11
 
-    - name:
+    - name: Check M2
       run: |
         ls ~/.m2
         cat ~/.m2/settings.xml
