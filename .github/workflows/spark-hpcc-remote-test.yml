@@ -25,6 +25,11 @@ jobs:
       with:
         java-version: 11
 
+    - name:
+      run: |
+        ls ~/.m2
+        cat ~/.m2/settings.xml
+
     - name: Install K8s
       uses: balchua/microk8s-actions@v0.3.2
       with:
